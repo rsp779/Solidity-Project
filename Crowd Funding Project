@@ -1,0 +1,50 @@
+// SPDX-License-Identifier: GPL-3.0
+pragma solidity >=0.5.0 <0.9.0;
+
+contract crowdfunding{
+    address public manager;
+    mapping(address=>uint) public donators;
+    uint public mindonation;
+    uint public deadline;
+    uint public noOfContributors;
+    uint public totalContribution;
+
+    struct request{
+        string reqDescription;
+        uint value;
+        address payable payrequest;
+        bool completed;
+        uint noOfVoters;
+        mapping(address=>bool) voters;
+    }
+    mapping (uint=>request)public requests;
+    constructor(uint _mindonations,uint _deadline){
+        manager=msg.sender;
+        mindonation=_mindonations;
+        deadline=block.timestamp+_deadline;
+    }
+
+    function donations() public payable{
+        require(msg.value > mindonation);
+        require(block.timestamp < deadline);
+
+        if(donators[msg.sender]==0)
+        noOfContributors++;
+
+        donators[msg.sender]+=msg.value;
+        totalContribution+=msg.value;
+    }
+
+    function toltalmoenyincontract() private view returns(uint) {
+        return address(this).balance;
+    }
+
+    function refund() public view{
+        require(block.timestamp<deadline || donators[msg.sender]>0);
+        
+        
+
+    }
+
+
+}
