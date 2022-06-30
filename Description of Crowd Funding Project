@@ -16,3 +16,9 @@ After collection of the fund the manager request was validation and
 if the amount that was requested was gathered then it was checked whether or not 50% of the donors where ready for the transfer of money
 (in this case ethers), the transaction is made . If there is any field that is not met then the ether are transefered back to all the people.
 
+
+Lottery System :
+
+A fixed amount of money was collected from various users and and used a random function that to transfer to it to the user who was randomly chosen as the winner.
+The minimum number of user had to be greater than 3 for the chosing the winner/
+
